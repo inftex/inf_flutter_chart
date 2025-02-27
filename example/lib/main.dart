@@ -106,6 +106,14 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // chart
+            LineChart(
+              items: [1, 2, 3]
+                  .map((e) => ChartItem(xValue: e.toString(), yValue: e))
+                  .toList(),
+            ),
+
+            // gauge
             RadicalGauge(
               minimum: 12,
               maximum: 31.5,
