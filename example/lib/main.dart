@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
               minimum: 12,
               maximum: 31.5,
               value: 20,
+              valueAnnotation: Text('INF'),
               items: [
                 GaugeItem(
                   label: 'Underweight',

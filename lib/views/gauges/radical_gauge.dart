@@ -9,6 +9,7 @@ class RadicalGauge extends StatefulWidget {
   final double value;
   final double thickness;
   final double? height;
+  final Widget? valueAnnotation;
   const RadicalGauge({
     super.key,
     required this.minimum,
@@ -17,6 +18,7 @@ class RadicalGauge extends StatefulWidget {
     required this.value,
     this.thickness = 30,
     this.height,
+    this.valueAnnotation,
   });
 
   @override
@@ -63,14 +65,12 @@ class _RadicalGaugeState extends State<RadicalGauge> {
                   pointers: <GaugePointer>[
                     NeedlePointer(value: widget.value)
                   ],
-                  annotations: const <GaugeAnnotation>[
-                    // GaugeAnnotation(
-                    //     widget: Container(
-                    //         child: const Text('90.0',
-                    //             style: TextStyle(
-                    //                 fontSize: 25, fontWeight: FontWeight.bold))),
-                    //     angle: 90,
-                    //     positionFactor: 0.5)
+                  annotations: <GaugeAnnotation>[
+                    if (widget.valueAnnotation != null)
+                      GaugeAnnotation(
+                          widget: widget.valueAnnotation!,
+                          angle: 90,
+                          positionFactor: 1)
                   ])
             ]));
   }
