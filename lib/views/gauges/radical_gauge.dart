@@ -10,6 +10,7 @@ class RadicalGauge extends StatefulWidget {
   final double thickness;
   final double? height;
   final Widget? valueAnnotation;
+  final TextStyle? axisLabelStyle;
   const RadicalGauge({
     super.key,
     required this.minimum,
@@ -19,6 +20,7 @@ class RadicalGauge extends StatefulWidget {
     this.thickness = 30,
     this.height,
     this.valueAnnotation,
+    this.axisLabelStyle,
   });
 
   @override
@@ -44,6 +46,11 @@ class _RadicalGaugeState extends State<RadicalGauge> {
               RadialAxis(
                   minimum: widget.minimum,
                   maximum: widget.maximum,
+                  axisLabelStyle: GaugeTextStyle(
+                      color: widget.axisLabelStyle?.color,
+                      fontFamily: widget.axisLabelStyle?.fontFamily,
+                      fontSize: widget.axisLabelStyle?.fontSize,
+                      fontWeight: widget.axisLabelStyle?.fontWeight),
                   axisLineStyle: AxisLineStyle(
                     thickness: thickness, // **Thicker arc**
                     cornerStyle: CornerStyle.bothCurve,

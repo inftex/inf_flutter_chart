@@ -90,57 +90,113 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // chart
-            LineChart(
-              items: [1, 2, 3]
-                  .map((e) => ChartItem(xValue: e.toString(), yValue: e))
-                  .toList(),
-            ),
+        child: Container(
+          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              // Column is also a layout widget. It takes a list of children and
+              // arranges them vertically. By default, it sizes itself to fit its
+              // children horizontally, and tries to be as tall as its parent.
+              //
+              // Column has various properties to control how it sizes itself and
+              // how it positions its children. Here we use mainAxisAlignment to
+              // center the children vertically; the main axis here is the vertical
+              // axis because Columns are vertical (the cross axis would be
+              // horizontal).
+              //
+              // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+              // action in the IDE, or press "p" in the console), to see the
+              // wireframe for each widget.
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                // chart default
+                Container(
+                  height: 200,
+                  child: LineChart(
+                    items: [1, 2, 3]
+                        .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
+                        .toList(),
+                  ),
+                ),
 
-            // gauge
-            RadicalGauge(
-              minimum: 12,
-              maximum: 31.5,
-              value: 20,
-              valueAnnotation: Text('INF'),
-              items: [
-                GaugeItem(
-                  label: 'Underweight',
-                  startValue: 12,
-                  endValue: 18.5,
-                  color: Colors.orange,
+                // chart black mode
+                Container(
+                    height: 200,
+                    color: Colors.black,
+                    child: LineChart(
+                      xAxisLabelStyle: TextStyle(color: Colors.white),
+                      yAxisLabelStyle: TextStyle(color: Colors.white),
+                      dataLabelStyle: TextStyle(color: Colors.white),
+                      items: [1, 2, 3]
+                          .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
+                          .toList(),
+                    )),
+
+                // gauge
+                RadicalGauge(
+                  minimum: 12,
+                  maximum: 31.5,
+                  value: 20,
+                  valueAnnotation: Text('INF'),
+                  items: [
+                    GaugeItem(
+                      label: 'Underweight',
+                      startValue: 12,
+                      endValue: 18.5,
+                      color: Colors.orange,
+                    ),
+                    GaugeItem(
+                      label: 'Normal',
+                      startValue: 18.5,
+                      endValue: 25,
+                      color: Colors.green,
+                    ),
+                    GaugeItem(
+                      label: 'Overweight',
+                      startValue: 25,
+                      endValue: 31.5,
+                      color: Colors.red,
+                    )
+                  ],
                 ),
-                GaugeItem(
-                  label: 'Normal',
-                  startValue: 18.5,
-                  endValue: 25,
-                  color: Colors.green,
-                ),
-                GaugeItem(
-                  label: 'Overweight',
-                  startValue: 25,
-                  endValue: 31.5,
-                  color: Colors.red.withOpacity(0.5),
+
+                // gauge black mode
+                Container(
+                  color: Colors.black,
+                  child: RadicalGauge(
+                    minimum: 12,
+                    maximum: 31.5,
+                    value: 20,
+                    axisLabelStyle: TextStyle(color: Colors.white),
+                    valueAnnotation: Text(
+                      'INF',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    items: [
+                      GaugeItem(
+                        label: 'Underweight',
+                        startValue: 12,
+                        endValue: 18.5,
+                        color: Colors.orange,
+                      ),
+                      GaugeItem(
+                        label: 'Normal',
+                        startValue: 18.5,
+                        endValue: 25,
+                        color: Colors.green,
+                      ),
+                      GaugeItem(
+                        label: 'Overweight',
+                        startValue: 25,
+                        endValue: 31.5,
+                        color: Colors.red,
+                      )
+                    ],
+                  ),
                 )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

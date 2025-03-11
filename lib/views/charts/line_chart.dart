@@ -1,12 +1,20 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:inf_flutter_chart/inf_flutter_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class LineChart extends StatefulWidget {
   final List<ChartItem> items;
+  final TextStyle? xAxisLabelStyle;
+  final TextStyle? yAxisLabelStyle;
+  final TextStyle? dataLabelStyle;
+  final Color lineColor;
   const LineChart({
     super.key,
     required this.items,
+    this.xAxisLabelStyle,
+    this.yAxisLabelStyle,
+    this.dataLabelStyle,
+    this.lineColor = Colors.blue,
   });
 
   @override
@@ -25,7 +33,12 @@ class _LineChartState extends State<LineChart> {
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
-        primaryXAxis: const CategoryAxis(),
+        primaryXAxis: CategoryAxis(
+          labelStyle: widget.xAxisLabelStyle,
+        ),
+        primaryYAxis: NumericAxis(
+          labelStyle: widget.yAxisLabelStyle,
+        ),
         // Chart title
         title: const ChartTitle(text: ''),
         // Enable legend
@@ -34,11 +47,16 @@ class _LineChartState extends State<LineChart> {
         tooltipBehavior: _tooltipBehavior,
         series: <LineSeries<ChartItem, String>>[
           LineSeries<ChartItem, String>(
-              dataSource: widget.items,
-              xValueMapper: (ChartItem item, _) => item.xValue,
-              yValueMapper: (ChartItem item, _) => item.yValue,
-              // Enable data label
-              dataLabelSettings: const DataLabelSettings(isVisible: true))
+            dataSource: widget.items,
+            color: widget.lineColor,
+            xValueMapper: (ChartItem item, _) => item.xValue,
+            yValueMapper: (ChartItem item, _) => item.yValue,
+            // Enable data label
+            dataLabelSettings: DataLabelSettings(
+              isVisible: true,
+              textStyle: widget.dataLabelStyle,
+            ),
+          )
         ]);
   }
 }
