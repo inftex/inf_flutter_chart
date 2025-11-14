@@ -11,6 +11,7 @@ class BarChart extends StatefulWidget {
   final TextStyle? dataLabelStyle;
   final bool randomBarColor;
   final Color? barColor;
+  final Color? gridColor;
   const BarChart({
     super.key,
     required this.items,
@@ -19,6 +20,7 @@ class BarChart extends StatefulWidget {
     this.dataLabelStyle,
     this.randomBarColor = false,
     this.barColor,
+    this.gridColor,
   });
 
   @override
@@ -49,10 +51,13 @@ class _BarChartState extends State<BarChart> {
     return SfCartesianChart(
         primaryXAxis: CategoryAxis(
           labelStyle: widget.xAxisLabelStyle,
+          majorGridLines: MajorGridLines(color: widget.gridColor),
         ),
         primaryYAxis: NumericAxis(
           labelStyle: widget.yAxisLabelStyle,
+          majorGridLines: MajorGridLines(color: widget.gridColor),
         ),
+        plotAreaBorderColor: widget.gridColor,
         // Chart title
         title: const ChartTitle(text: ''),
         // Enable legend
