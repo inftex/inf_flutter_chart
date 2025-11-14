@@ -88,6 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildBarChart() {
     return BarChart(
       randomBarColor: true,
+      gridColor: Colors.grey,
+      axisColor: Colors.blue,
       items: [1, 2, 3]
           .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
           .toList(),

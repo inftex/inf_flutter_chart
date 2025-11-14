@@ -12,16 +12,17 @@ class BarChart extends StatefulWidget {
   final bool randomBarColor;
   final Color? barColor;
   final Color? gridColor;
-  const BarChart({
-    super.key,
-    required this.items,
-    this.xAxisLabelStyle,
-    this.yAxisLabelStyle,
-    this.dataLabelStyle,
-    this.randomBarColor = false,
-    this.barColor,
-    this.gridColor,
-  });
+  final Color? axisColor;
+  const BarChart(
+      {super.key,
+      required this.items,
+      this.xAxisLabelStyle,
+      this.yAxisLabelStyle,
+      this.dataLabelStyle,
+      this.randomBarColor = false,
+      this.barColor,
+      this.gridColor,
+      this.axisColor});
 
   @override
   State<BarChart> createState() => _BarChartState();
@@ -50,10 +51,12 @@ class _BarChartState extends State<BarChart> {
   Widget build(BuildContext context) {
     return SfCartesianChart(
         primaryXAxis: CategoryAxis(
+          axisLine: AxisLine(color: widget.axisColor),
           labelStyle: widget.xAxisLabelStyle,
           majorGridLines: MajorGridLines(color: widget.gridColor),
         ),
         primaryYAxis: NumericAxis(
+          axisLine: AxisLine(color: widget.axisColor),
           labelStyle: widget.yAxisLabelStyle,
           majorGridLines: MajorGridLines(color: widget.gridColor),
         ),
