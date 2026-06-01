@@ -48,6 +48,7 @@ class _LineChartState extends State<LineChart> {
           return LineSeries<SeriesItem, String>(
             dataSource: e.items,
             color: e.color,
+            name: e.name,
             xValueMapper: (SeriesItem item, _) => item.xValue,
             yValueMapper: (SeriesItem item, _) => item.yValue,
             // Enable data label
