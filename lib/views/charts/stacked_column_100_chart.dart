@@ -3,9 +3,7 @@ import 'package:inf_flutter_chart/inf_flutter_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StackedColumn100Chart extends StatefulWidget {
-  final List<StackedChartItem> items;
-  final List<String> seriesNames;
-  final List<Color>? seriesColors;
+  final List<Series> series;
 
   final TextStyle? xAxisLabelStyle;
   final TextStyle? yAxisLabelStyle;
@@ -13,9 +11,7 @@ class StackedColumn100Chart extends StatefulWidget {
 
   const StackedColumn100Chart({
     super.key,
-    required this.items,
-    required this.seriesNames,
-    this.seriesColors,
+    required this.series,
     this.xAxisLabelStyle,
     this.yAxisLabelStyle,
     this.dataLabelStyle,
@@ -57,21 +53,20 @@ class _StackedColumn100ChartState extends State<StackedColumn100Chart> {
         majorTickLines: const MajorTickLines(size: 0),
         labelStyle: widget.yAxisLabelStyle,
       ),
-      series: List.generate(
-        widget.seriesNames.length,
-        (index) => StackedColumn100Series<StackedChartItem, String>(
-          name: widget.seriesNames[index],
-          color: widget.seriesColors?[index],
-          dataSource: widget.items,
+      series: List.generate(widget.series.length, (index) {
+        final e = widget.series[index];
+        return StackedColumn100Series<SeriesItem, String>(
+          name: e.name,
+          color: e.color,
+          dataSource: e.items,
           xValueMapper: (item, _) => item.xValue,
-          yValueMapper: (item, _) =>
-              index < item.values.length ? item.values[index] : 0,
+          yValueMapper: (item, _) => item.yValue,
           dataLabelSettings: DataLabelSettings(
             isVisible: true,
             textStyle: widget.dataLabelStyle,
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

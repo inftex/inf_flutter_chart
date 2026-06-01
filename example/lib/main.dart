@@ -90,23 +90,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildStackedColumn100Chart() {
     return StackedColumn100Chart(
-      seriesNames: const [
-        'Protein',
-        'Carbs',
-        'Fat',
-      ],
-      items: const [
-        StackedChartItem(
-          xValue: 'Mon',
-          values: [25, 15, 60],
+      series: [
+        Series(
+          name: 'Protein',
+          items: [
+            SeriesItem(xValue: 'Mon', yValue: 25),
+            SeriesItem(xValue: 'Tue', yValue: 50),
+            SeriesItem(xValue: 'Wed', yValue: 40),
+          ],
         ),
-        StackedChartItem(
-          xValue: 'Tue',
-          values: [45, 35, 20],
+        Series(
+          name: 'Carbs',
+          items: [
+            SeriesItem(xValue: 'Mon', yValue: 40),
+            SeriesItem(xValue: 'Tue', yValue: 15),
+            SeriesItem(xValue: 'Wed', yValue: 50),
+          ],
         ),
-        StackedChartItem(
-          xValue: 'Wed',
-          values: [30, 20, 50],
+        Series(
+          name: 'Fat',
+          items: [
+            SeriesItem(xValue: 'Mon', yValue: 35),
+            SeriesItem(xValue: 'Tue', yValue: 35),
+            SeriesItem(xValue: 'Wed', yValue: 10),
+          ],
         ),
       ],
     );
@@ -118,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
       gridColor: Colors.grey,
       axisColor: Colors.blue,
       items: [1, 2, 3]
-          .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
+          .map((e) => SeriesItem(xValue: 'Cate $e', yValue: e))
           .toList(),
     );
   }
@@ -192,9 +199,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       height: 200,
       child: LineChart(
-        items: [1, 2, 3]
-            .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
-            .toList(),
+        series: [
+          Series(
+              name: 'SeriesName',
+              items: [1, 2, 3]
+                  .map((e) => SeriesItem(xValue: 'Cate $e', yValue: e))
+                  .toList())
+        ],
       ),
     );
   }
@@ -207,9 +218,13 @@ class _MyHomePageState extends State<MyHomePage> {
           xAxisLabelStyle: TextStyle(color: Colors.white),
           yAxisLabelStyle: TextStyle(color: Colors.white),
           dataLabelStyle: TextStyle(color: Colors.white),
-          items: [1, 2, 3]
-              .map((e) => ChartItem(xValue: 'Cate $e', yValue: e))
-              .toList(),
+          series: [
+            Series(
+                name: 'SeriesName',
+                items: [1, 2, 3]
+                    .map((e) => SeriesItem(xValue: 'Cate $e', yValue: e))
+                    .toList())
+          ],
         ));
   }
 }

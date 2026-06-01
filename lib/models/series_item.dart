@@ -1,8 +1,8 @@
-class ChartItem {
+class SeriesItem {
   String xValue;
   num yValue;
 
-  ChartItem({
+  SeriesItem({
     required this.xValue,
     required this.yValue,
   });

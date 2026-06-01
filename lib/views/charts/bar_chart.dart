@@ -5,7 +5,7 @@ import 'package:inf_flutter_chart/inf_flutter_chart.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BarChart extends StatefulWidget {
-  final List<ChartItem> items;
+  final List<SeriesItem> items;
   final TextStyle? xAxisLabelStyle;
   final TextStyle? yAxisLabelStyle;
   final TextStyle? dataLabelStyle;
@@ -67,13 +67,13 @@ class _BarChartState extends State<BarChart> {
         // legend: const Legend(isVisible: true),
         // Enable tooltip
         tooltipBehavior: _tooltipBehavior,
-        series: <BarSeries<ChartItem, String>>[
-          BarSeries<ChartItem, String>(
+        series: <BarSeries<SeriesItem, String>>[
+          BarSeries<SeriesItem, String>(
             dataSource: widget.items,
-            xValueMapper: (ChartItem item, _) => item.xValue,
-            yValueMapper: (ChartItem item, _) => item.yValue,
+            xValueMapper: (SeriesItem item, _) => item.xValue,
+            yValueMapper: (SeriesItem item, _) => item.yValue,
             color: widget.barColor,
-            pointColorMapper: (ChartItem item, index) => widget.randomBarColor
+            pointColorMapper: (SeriesItem item, index) => widget.randomBarColor
                 ? genRandomColor(int.tryParse('${item.yValue}') ?? 0)
                 : null,
             // Enable data label
