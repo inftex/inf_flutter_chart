@@ -202,8 +202,15 @@ class _MyHomePageState extends State<MyHomePage> {
         series: [
           Series(
               name: 'SeriesName',
+              color: Colors.orange,
               items: [1, 2, 3]
                   .map((e) => SeriesItem(xValue: 'Cate $e', yValue: e))
+                  .toList()),
+          Series(
+              name: 'SeriesName1',
+              color: Colors.red,
+              items: [1, 2, 3]
+                  .map((e) => SeriesItem(xValue: 'Cate $e', yValue: e * 2))
                   .toList())
         ],
       ),
