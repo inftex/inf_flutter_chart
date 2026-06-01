@@ -58,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                // stacked colum 100 chart
+                buildStackedColumn100Chart(),
+
                 // barchar default
                 buildBarChart(),
 
@@ -82,6 +85,30 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget buildStackedColumn100Chart() {
+    return StackedColumn100Chart(
+      seriesNames: const [
+        'Protein',
+        'Carbs',
+        'Fat',
+      ],
+      items: const [
+        StackedChartItem(
+          xValue: 'Mon',
+          values: [25, 15, 60],
+        ),
+        StackedChartItem(
+          xValue: 'Tue',
+          values: [45, 35, 20],
+        ),
+        StackedChartItem(
+          xValue: 'Wed',
+          values: [30, 20, 50],
+        ),
+      ],
     );
   }
 
