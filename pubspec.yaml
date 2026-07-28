@@ -10,10 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-  syncfusion_flutter_charts: 28.1.35
-  syncfusion_flutter_core: 28.1.35
-  syncfusion_flutter_gauges: 28.1.35
+
+  syncfusion_flutter_charts: 33.2.8
+  syncfusion_flutter_core: 33.2.8
+  syncfusion_flutter_gauges: 33.2.8
+
+  intl: 0.20.2
 
 dev_dependencies:
   flutter_test:
